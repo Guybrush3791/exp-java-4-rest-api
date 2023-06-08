@@ -1,13 +1,12 @@
 package org.java.demo.pojo;
 
-import org.hibernate.property.access.spi.GetterFieldImpl;
-
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.Lob;
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.Positive;
 import jakarta.validation.constraints.PositiveOrZero;
 
 @Entity
@@ -23,6 +22,10 @@ public class Book {
 	
 	@PositiveOrZero
 	private Integer price;
+	
+	@Lob
+	@Column(length=16777215)
+	private byte[] image;
 	
 	public Book() { }
 	public Book(String name, String description, Integer price) {
@@ -55,6 +58,16 @@ public class Book {
 	}
 	public void setPrice(Integer price) {
 		this.price = price;
+	}
+	public boolean hasImage() {
+		
+		return getImage() != null;
+	}
+	public byte[] getImage() {
+		return image;
+	}
+	public void setImage(byte[] image) {
+		this.image = image;
 	}
 	
 	@Override

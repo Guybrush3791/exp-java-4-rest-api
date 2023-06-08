@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<h1>Books</h1>
+	<a href="/create">CREATE NEW BOOK</a>
+	<ul>
+		<li
+			th:each="book : ${books}"
+			th:object="${book}"
+		>
+			[[ *{name} ]]
+			<img th:if="*{hasImage()}" th:src="@{'/image/' + *{id}}">
+		</li>
+	</ul>
+</body>
+</html>
